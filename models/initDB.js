@@ -29,6 +29,18 @@ async function initDB() {
       )
     `);
 
+    await db.query(`
+     CREATE TABLE IF NOT EXISTS categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  name VARCHAR(100) NOT NULL,
+  type ENUM('income', 'expense') NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+    `);
+
     console.log("✅ Database tables created or already exist.");
   } catch (err) {
     console.error("❌ Error creating tables:", err.message);

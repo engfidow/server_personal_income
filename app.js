@@ -3,7 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const authRoutes = require("./routes/authRoutes");
 const transactionRoutes = require("./routes/transactionRoutes");
-
+const categoryRoutes = require("./routes/categoryRoutes");
 const app = express();
 
 app.use(cors());
@@ -15,5 +15,8 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/transactions", transactionRoutes);
+
+app.use("/api/categories", categoryRoutes);
+
 
 module.exports = app;
